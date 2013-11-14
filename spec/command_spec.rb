@@ -34,14 +34,14 @@ module MrPoole
           expect(fn).to match(/#{date_regex}-test_post_with_uppercase[.]md/)
         end
 
-        it "should sub underscores for spaces in title" do
+        it "should sub hyphens for spaces in title" do
           fn = c.post({:title => "Test Post with Spaces"})
-          expect(fn).to match(/#{date_regex}-test_post_with_spaces[.]md/)
+          expect(fn).to match(/#{date_regex}-test-post-with-spaces[.]md/)
         end
 
         it "should remove non-word characters for slug" do
           fn = c.post({:title => "On (function() {}()) in JavaScript"})
-          expect(fn).to match(/#{date_regex}-on_function_in_javascript[.]md/)
+          expect(fn).to match(/#{date_regex}-on-function-in-javascript[.]md/)
         end
 
         it "should update the title in the file itself" do
@@ -54,7 +54,7 @@ module MrPoole
           fn = c.post({:title => "Date test post"})
 
           # date in filename should match date in file itself
-          date = fn.match(/(#{date_regex})-date_test_post[.]md/)[1]
+          date = fn.match(/(#{date_regex})-date-test-post[.]md/)[1]
           content = File.open(fn, 'r').read
           expect(content).to match(/date: #{date}/)
         end
@@ -68,7 +68,7 @@ module MrPoole
 
         it "should sub any weird characters in slug" do
           fn = c.post({:title => "Test Post with Spaces", :slug => "(stupid] {slüg/"})
-          expect(fn).to match(/#{date_regex}-stupid_slg[.]md/)
+          expect(fn).to match(/#{date_regex}-stupid-slg[.]md/)
         end
 
         it "should update the title in the file itself" do
@@ -126,14 +126,14 @@ module MrPoole
           expect(fn).not_to match(/#{date_regex}/)
         end
 
-        it "should downcase and underscore title for slug" do
+        it "should downcase and hyphenize title for slug" do
           fn = c.draft({:title => "Test Post with Spaces"})
-          expect(fn).to match(/test_post_with_spaces[.]md/)
+          expect(fn).to match(/test-post-with-spaces[.]md/)
         end
 
         it "should remove non-word characters for slug" do
           fn = c.draft({:title => "On (function() {}()) in JavaScript"})
-          expect(fn).to match(/on_function_in_javascript[.]md/)
+          expect(fn).to match(/on-function-in-javascript[.]md/)
         end
 
         it "should update the title in the file itself" do
@@ -157,7 +157,7 @@ module MrPoole
 
         it "should sub any weird characters in slug" do
           fn = c.draft({:title => "Test Post with Spaces", :slug => "(stupid] {slüg/"})
-          expect(fn).to match(/stupid_slg[.]md/)
+          expect(fn).to match(/stupid-slg[.]md/)
         end
 
         it "should update the title in the file itself" do

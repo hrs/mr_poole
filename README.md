@@ -29,7 +29,7 @@ immediately.
 
 Generates a timestamped post in your `_posts` directory, with the format
 `YYYY-MM-DD-slug.md`. With no options, will generate a slug based on your title
-by replacing spaces with underscores, downcasing, and removing any special
+by replacing spaces with hyphens, downcasing, and removing any special
 character.
 
 Options:
